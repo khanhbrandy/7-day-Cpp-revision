@@ -245,3 +245,77 @@ int main()
     return 0;
 }
 
+// Bai 9
+#include <iostream>
+using namespace std;
+#define     SO_LUONG    100
+
+int main()
+{
+    int mang[SO_LUONG];
+    // nhap so luong phan tu
+    int N;
+    cout << "Nhap so luong phan tu: ";
+    cin >> N;
+    // nhap du lieu
+    for (int i = 0; i < N; i++) {
+        cout << "Nhap phan tu thu "<<i+1<<": ";
+        cin >> mang[i];
+    }
+    // sap xep mang tang dan
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = i + 1; j < N; j++) {
+            if (mang[i] > mang[j]) {
+                // trao doi gia tri cua i va j
+                int t = mang[i];
+                mang[i] = mang[j];
+                mang[j] = t;
+            }
+        }
+    }
+
+    // tim so am max
+    int soAmMax = 0;
+    bool isFirstNum = true;
+    for (int i = 0; i < N; i++) {
+        if (mang[i] < 0) {
+            if (isFirstNum) {
+                soAmMax = mang[i];
+                isFirstNum = false;
+            }
+            else {
+                soAmMax = soAmMax < mang[i] ? mang[i] : soAmMax;
+            }
+        }
+    }
+    if (isFirstNum) {
+        cout << "Khong co so am\n";
+    }
+    else {
+        cout << "So am max = " << soAmMax << endl;
+    }
+
+    // tim so max
+    int soMax = mang[0];
+    for (int i = 1; i < N; i++) {
+        soMax = soMax < mang[i] ? mang[i] : soMax;
+    }
+    cout << "Gia tri max = " << soMax << endl;
+
+    int tong = 0;
+    for (int i = 0; i < N; i++) {
+        tong += mang[i];
+    }
+    cout << "Tong = " << tong << endl;
+    //xoa phan tu dau tien
+    for (int i = 0; i < N - 1; i++) {
+        mang[i] = mang[i + 1];
+    }
+    N--;
+    
+    // hien thi du lieu
+    for (int i = 0; i < N; i++) {
+        cout << "Phan tu thu "<<i + 1<<" = " 
+            << mang[i] << endl;
+    }
+}
