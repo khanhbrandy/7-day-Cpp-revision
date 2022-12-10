@@ -1,2 +1,2 @@
-# 14-day C++ Revision
+# 7-day C++ Revision
 Basic C++ Revision Notes
